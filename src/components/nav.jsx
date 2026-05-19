@@ -1,4 +1,4 @@
-function Navbar() {
+function Navbar(props) {
   const isMobile = window.innerWidth < 600
 
   return (
@@ -30,7 +30,7 @@ function Navbar() {
       </div>
 
       <div style={{ display: "flex", gap: "10px" }}>
-        <button>Cart</button>
+        <button>Cart:{props.cartcount}</button>
         <button>Login</button>
       </div>
     </nav>

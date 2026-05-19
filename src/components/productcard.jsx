@@ -1,3 +1,5 @@
+
+
 function Product(props) {
   return (
     <div
@@ -21,7 +23,7 @@ function Product(props) {
 
       <h3>Rs.{props.price}</h3>
 
-      <button>Add to cart</button>
+      <button onClick={props.Addtocart}>Add to cart</button>
     </div>
   )
 }
