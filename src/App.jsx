@@ -15,6 +15,9 @@ function App(){
   function Addtocart(product){
     setCart([...cart,product])
   }
+  function deletecart(product) {
+    setCart(cart.filter((item) => item.id !== product.id))
+  }
 
   return(
 
@@ -30,6 +33,7 @@ function App(){
         price={item.price}
         image={item.image}
         Addtocart={()=>Addtocart(item)}
+        deletecart={()=>deletecart(item)}
         />
       ))}
      </div>

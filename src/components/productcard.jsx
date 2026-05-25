@@ -24,6 +24,7 @@ function Product(props) {
       <h3>Rs.{props.price}</h3>
 
       <button onClick={props.Addtocart}>Add to cart</button>
+      <button onClick={props.deletecart}>Delete from cart</button>
     </div>
   )
 }
