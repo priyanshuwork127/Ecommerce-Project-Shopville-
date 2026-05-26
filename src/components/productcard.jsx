@@ -7,6 +7,7 @@ function Product(props) {
         border: "1px solid gray",
         padding: "10px",
         width: "200px",
+        backgroundColor:"white"
       }}
     >
       <img
@@ -23,9 +24,9 @@ function Product(props) {
 
       <h3>Rs.{props.price}</h3>
 
-      <button onClick={props.Addtocart}>Add to cart</button>
-      <button onClick={props.deletecart}>Delete from cart</button>
-    </div>
+      <button onClick={props.Addtocart} style={{backgroundColor:"Orange",border:"1px solid black"}}>Add to cart</button>
+      <button onClick={props.deletecart} style={{backgroundColor:"Red",border:"1px solid black",marginLeft:"10px"}}>Delete from cart</button>
+          </div>
   )
 }
 

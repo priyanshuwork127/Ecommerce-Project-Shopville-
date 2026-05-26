@@ -15,17 +15,18 @@ function App(){
   function Addtocart(product){
     setCart([...cart,product])
   }
-  function deletecart(product) {
-    setCart(cart.filter((item) => item.id !== product.id))
+  function deletecart(product){
+    const updatedcart=cart.filter((item)=>item.id!==product.id)
+    setCart(updatedcart)
   }
 
   return(
 
     <>
-    <Navbar cartcount={cart.length}/>
+    <Navbar cartcount={cart.length}/>np
     
     <div
-     style={{display:"flex",flexWrap:"wrap",gap:"20px",padding:"20px"}}>
+     style={{display:"flex",flexWrap:"wrap",gap:"20px",padding:"20px",backgroundColor:"grey"}}>
       {products.map((item)=>(
         <Product 
         key={item.id}
@@ -34,6 +35,7 @@ function App(){
         image={item.image}
         Addtocart={()=>Addtocart(item)}
         deletecart={()=>deletecart(item)}
+  
         />
       ))}
      </div>
