@@ -10,7 +10,7 @@ function App() {
   const [showCart, setShowCart] = useState(false)
   const [showRegister, setShowRegister] =
     useState(false)
-  const [search,setSearch]=useState("")
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -29,65 +29,90 @@ function App() {
 
     setCart(updatedCart)
   }
+
   const filteredProducts = products.filter(
-  (item) =>
-    item.title
-      .toLowerCase()
-      .includes(search.toLowerCase())
-)
+    (item) =>
+      item.title
+        .toLowerCase()
+        .includes(search.toLowerCase())
+  )
 
   return (
-  <div backgroundColor="#f3f4f6" style={{ minHeight: "100vh" }}>
-    <Navbar
-  cartcount={cart.length}
-  showCart={() => setShowCart(!showCart)}
-  showRegister={() =>
-    setShowRegister(!showRegister)
-  }
-  search={search}
-  setSearch={setSearch}
-/>
-    {showRegister ? (
-      <Register />
-    ) : (
-      <div
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#f3f4f6",
+      }}
+    >
+      <Navbar
+        cartcount={cart.length}
+        showCart={() => setShowCart(!showCart)}
+        showRegister={() =>
+          setShowRegister(!showRegister)
+        }
+        search={search}
+        setSearch={setSearch}
+      />
+
+      {showRegister ? (
+        <Register />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "20px",
+            padding: "20px",
+            justifyContent: "center",
+          }}
+        >
+          {!showCart &&
+            filteredProducts.map((item) => (
+              <Product
+                key={item.id}
+                title={item.title}
+                price={item.price}
+                image={item.image}
+                Addtocart={() =>
+                  addToCart(item)
+                }
+              />
+            ))}
+
+          {showCart &&
+            cart.map((item, index) => (
+              <Product
+                key={index}
+                title={item.title}
+                price={item.price}
+                image={item.image}
+                Addtocart={() =>
+                  addToCart(item)
+                }
+                deleteFromCart={() =>
+                  deleteFromCart(index)
+                }
+                showRemove={true}
+              />
+            ))}
+        </div>
+      )}
+
+      <p
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "20px",
-          padding: "20px",
-          justifyContent: "center",
+          textAlign: "center",
+          padding: "15px",
+          color: "gray",
+          fontSize: "14px",
         }}
       >
-        {!showCart &&
-          filteredProducts.map((item) => (
-            <Product
-              key={item.id}
-              title={item.title}
-              price={item.price}
-              image={item.image}
-              Addtocart={() => addToCart(item)}
-            />
-          ))}
-
-        {showCart &&
-          cart.map((item, index) => (
-            <Product
-              key={index}
-              title={item.title}
-              price={item.price}
-              image={item.image}
-              Addtocart={() => addToCart(item)}
-              deleteFromCart={() =>
-                deleteFromCart(index)
-              }
-              showRemove={true}
-            />
-          ))}
-      </div>
-    )}
-  </div>
-)
+        Disclaimer: Product images,
+        names, and data are used only
+        for educational and learning
+        purposes.
+      </p>
+    </div>
+  )
 }
 
 export default App
