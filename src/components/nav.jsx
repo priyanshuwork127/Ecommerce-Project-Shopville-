@@ -1,37 +1,80 @@
-function Navbar(props) {
+function Navbar({
+  cartcount,
+  showCart,
+  showRegister,
+  search,
+  setSearch
+}) {
   const isMobile = window.innerWidth < 600
 
   return (
     <nav
-      style={{
-        height: isMobile ? "auto" : "70px",
-        width: "auto",
-        backgroundColor: "black",
-        color: "white",
-        display: "flex",
-        flexDirection: isMobile ? "column" : "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "20px",
-        gap: "15px",
-      }}
-    >
-      <h1>Shop ville</h1>
+  style={{
+    minHeight: "80px",
+    backgroundColor: "#111827",
+    color: "white",
+    display: "flex",
+    flexDirection: isMobile ? "column" : "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "20px 40px",
+    gap: "20px",
+    boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+  }}
+>
+      <h1
+  style={{
+    margin: 0,
+    fontSize: "36px",
+    fontWeight: "bold",
+    letterSpacing: "1px",
+  }}
+>
+  Shop Ville
+</h1>
 
-      <div style={{ display: "flex", gap: "15px" }}>
-        <input
-          type="text"
-          placeholder="Search"
-          style={{
-            padding: "8px",
-            width: isMobile ? "100%" : "250px",
-          }}
-        />
-      </div>
+      <input
+  type="text"
+  placeholder="Search products..."
+  value={search}
+  onChange={(e) =>
+    setSearch(e.target.value)
+  }
+  style={{
+    padding: "12px",
+    width: isMobile ? "100%" : "350px",
+    borderRadius: "8px",
+    border: "none",
+    outline: "none",
+  }}
+/>
 
       <div style={{ display: "flex", gap: "10px" }}>
-        <button>Cart:{props.cartcount}</button>
-        <button>Login</button>
+        <button onClick={showCart} style={{
+    padding: "10px 18px",
+    border: "none",
+    borderRadius: "8px",
+    backgroundColor: "#2563eb",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+    fontSize: "14px",
+  }}>
+          Cart: {cartcount}
+        </button>
+
+        <button onClick={showRegister} style={{
+    padding: "10px 18px",
+    border: "none",
+    borderRadius: "8px",
+    backgroundColor: "#2563eb",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+    fontSize: "14px",
+  }}>
+          Login
+        </button>
       </div>
     </nav>
   )
